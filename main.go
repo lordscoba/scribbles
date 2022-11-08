@@ -1,12 +1,14 @@
 package main
 
-import(
-  // "fmt"
-  routes "github.com/lordscoba/scribbles/routes"
-  "os"
-  "log"
-  "github.com/gin-gonic/gin"
-  "github.com/joho/godotenv"
+import (
+	// "fmt"
+	"log"
+	"os"
+
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"github.com/lordscoba/scribbles/middleware"
+	routes "github.com/lordscoba/scribbles/routes"
 )
 
 func main(){
@@ -25,6 +27,7 @@ func main(){
   }
 
   router := gin.New()
+  router.Use(middleware.CORSMiddleware())
   router.Use(gin.Logger())
 
   routes.AuthRoutes(router)
